@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
-    class Program
+    class Fundamentals1
     {
         static int greatestDivisor(int a, int b)
         {
