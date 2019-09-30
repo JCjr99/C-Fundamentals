@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static int greatestDivisor(int a, int b)
+        {
+            while (a != b)
+            {
+                if(a > b)
+                {
+                    a -= b;
+                }
+                else
+                {
+                    b -= a;
+                }
+            }
+            return a;
+        }
+
+        static int[,] matrixMult (int[,]x,int[,]y)
+        {
+            int[,] r = new int[5, 5];
+            if (x.GetLength(0) != y.GetLength(1))
+            {
+                Console.WriteLine("ERROR: Length or rows of first argument does not meet length of columns of second argument");
+                return r;
+            }
+            
+            for(int i = 0; i < x.GetLength(0); i++)
+            {
+                for(int j = 0; j < y.GetLength(1); j++)
+                {
+                    int sum = 0;
+                    for(int k = 0; k < x.GetLength(1); k++)
+                    {
+                        sum += x[i,k] * y[k,j];
+                    }
+                    r[i,j] = sum;
+                }
+            }
+            return r;
+        }
+        static void Main(string[] args)
+        {
+            int[,] x = new int[,]
+            {
+                {1,2,3},
+                {4,5,6}
+            };
+
+            int[,] y = new int[,]
+            {
+                {7,8},
+                {9,10},
+                {11,12},
+            };
+            int[,] r = new int[5, 5];
+          
+            r = matrixMult(x, y);
+            Console.WriteLine("Greatest commmon Divisor is {0}", greatestDivisor(13, 5));
+            Console.WriteLine("Greatest commmon Divisor is {0}", greatestDivisor(4,8));
+            Console.WriteLine("Greatest commmon Divisor is {0}", greatestDivisor(350,35));
+            Console.WriteLine("First element of matrix mult is {0}", r[0,0]);
+            Console.WriteLine("Second element of matrix mult is {0}", r[0, 1]);
+            Console.WriteLine("Third element of matrix mult is {0}", r[1, 0]);
+            Console.WriteLine("Fourth element of matrix mult is {0}", r[1, 1]);
+        }
+    }
+}
